@@ -1,5 +1,5 @@
-z<template>
-  <Link href="'#'" class="cursor-pointer select-none">
+<template>
+  <Link href="#" class="cursor-pointer select-none">
     <div class="flex flex-col leading-tight">
       <span class="text-sm font-semibold md:text-base">
         GoldenAzors<span class="text-emerald-400">Vote</span>
