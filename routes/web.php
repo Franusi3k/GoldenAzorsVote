@@ -27,12 +27,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('role:admin')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return Inertia::render('Admin/Overview');
-    });
-});
-
 Route::middleware(['auth', 'role:admin'])
     ->prefix('admin')
     ->name('admin.')
