@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Domain\Poll\PollStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdatePollRequest;
 use App\Models\Poll;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -37,18 +35,16 @@ class PollController extends Controller
         ]);
     }
 
-    public function update(Request $request, Poll $poll): RedirectResponse
+    public function update(UpdatePollRequest $request, Poll $poll): RedirectResponse
     {
-        // zmienić później na FormRequest
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'opens_at' => 'nullable|date',
-            'closes_at' => 'nullable|date|after:opens_at',
-            'status' => ['required', Rule::in(PollStatus::all())],
-        ]);
+        if($poll->isActive()) {
+            return redirect()->back()->with([
+                'message' => 'Active polls cannot be edited.',
+                'status' => 'error'
+            ]);
+        }
 
-        $poll->update($data);
+        $poll->update($request->validated());
 
         return redirect()->route('admin.polls.index')->with([
             'message' => 'Poll updated successfully.',
