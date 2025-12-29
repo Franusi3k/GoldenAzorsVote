@@ -8,7 +8,7 @@ import { ref, computed } from "vue";
 
 const props = defineProps({
   polls: {
-    type: Array,
+    type: Object,
     default: () => [],
   },
 });
@@ -16,8 +16,8 @@ const props = defineProps({
 const filter = ref("all");
 
 const filteredPolls = computed(() => {
-  if (filter.value === "all") return props.polls;
-  return props.polls.filter((p) => p.status === filter.value);
+  if (filter.value === "all") return props.polls.data;
+  return props.polls.data.filter((p) => p.status === filter.value);
 });
 
 const filters = [

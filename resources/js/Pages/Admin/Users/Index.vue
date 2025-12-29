@@ -9,8 +9,8 @@ import { ref } from "vue";
 
 const props = defineProps({
   users: {
-    type: Array,
-    default: () => [{}],
+    type: Object,
+    default: () => [],
   },
 });
 
@@ -49,9 +49,9 @@ const closeEdit = () => {
       </div>
     </div>
 
-    <div v-if="users.length">
-      <UsersListMobile class="md:hidden" :users="users" @edit="openEdit" />
-      <UsersTable class="hidden md:block" :users="users" @edit="openEdit" />
+    <div v-if="users.data.length">
+      <UsersListMobile class="md:hidden" :users="users.data" @edit="openEdit" />
+      <UsersTable class="hidden md:block" :users="users.data" @edit="openEdit" />
     </div>
 
     <div
