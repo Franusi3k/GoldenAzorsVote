@@ -9,7 +9,7 @@ use \App\Http\Controllers\Admin\PollController;
 use \App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('Landing/Index', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
