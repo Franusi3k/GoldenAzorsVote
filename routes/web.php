@@ -34,19 +34,9 @@ Route::middleware(['auth', 'role:admin'])
 
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::prefix('polls')->name('polls.')->group(function () {
-            Route::get('/', [PollController::class, 'index'])->name('index');
-            Route::get('/{poll}', [PollController::class, 'show'])->name('show');
-            Route::put('/{poll}', [PollController::class, 'update'])->name('update');
-            Route::delete('/{poll}', [PollController::class, 'destroy'])->name('destroy');
-        });
+        Route::resource('/polls', PollController::class)->only(['index', 'show', 'update', 'destroy']);
 
-        Route::prefix('users')->name('users.')->group(function () {
-            Route::get('/', [UserController::class, 'index'])->name('index');
-            Route::get('/{user}', [UserController::class, 'show'])->name('show');
-            Route::put('/{user}', [UserController::class, 'update'])->name('update');
-            Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
-        });
+        Route::resource('/users', UserController::class)->only(['index', 'show', 'update', 'destroy']);
     });
 
 require __DIR__.'/auth.php';
