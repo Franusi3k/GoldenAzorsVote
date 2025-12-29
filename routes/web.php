@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\AdminDashboardController;
-use \App\Http\Controllers\PollController;
-use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\Admin\PollController;
+use \App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -32,14 +32,20 @@ Route::middleware(['auth', 'role:admin'])
     ->name('admin.')
     ->group(function () {
 
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::prefix('polls')->name('polls.')->group(function () {
             Route::get('/', [PollController::class, 'index'])->name('index');
+            Route::get('/{poll}', [PollController::class, 'show'])->name('show');
+            Route::put('/{poll}', [PollController::class, 'update'])->name('update');
+            Route::delete('/{poll}', [PollController::class, 'destroy'])->name('destroy');
         });
 
         Route::prefix('users')->name('users.')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('index');
+            Route::get('/{user}', [UserController::class, 'show'])->name('show');
+            Route::put('/{user}', [UserController::class, 'update'])->name('update');
+            Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
         });
     });
 
