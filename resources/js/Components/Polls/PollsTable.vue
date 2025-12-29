@@ -22,7 +22,7 @@ defineProps({
           <th class="px-4 py-3 font-medium">Poll</th>
           <th v-if="showOwner" class="px-4 py-3 font-medium">Owner</th>
           <th class="px-4 py-3 font-medium">Status & stats</th>
-          <th class="px-4 py-3 font-medium">Starts & Ends</th>
+          <th class="px-4 py-3 font-medium">Opens & Closes</th>
           <th class="px-4 py-3 text-right font-medium">Actions</th>
         </tr>
       </thead>
@@ -58,16 +58,16 @@ defineProps({
 
           <td class="px-5 py-4">
             <p class="mt-1 text-[11px] text-zinc-500">
-              Starts: <span class="text-zinc-300">{{ poll.starts_at ?? "—" }}</span>
+              Opens: <span class="text-zinc-300">{{ poll.opens_at ?? "—" }}</span>
             </p>
             <p class="mt-1 text-[11px] text-zinc-500">
-              Ends: <span class="text-zinc-300">{{ poll.ends_at ?? "—" }}</span>
+              Closes: <span class="text-zinc-300">{{ poll.closes_at ?? "—" }}</span>
             </p>
           </td>
 
           <td class="px-4 py-3 align-top text-right">
             <div class="flex flex-col items-end gap-1 text-[11px]">
-              <Link href="#" class="text-zinc-400 hover:text-emerald-400">
+              <Link :href="route('admin.polls.show', poll.id)" class="text-zinc-400 hover:text-emerald-400">
                 Open poll
               </Link>
               <Link href="#"

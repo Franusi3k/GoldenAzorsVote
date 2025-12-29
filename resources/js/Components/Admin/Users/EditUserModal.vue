@@ -42,7 +42,7 @@ watch(
 const save = () => {
   if (!props.user?.id) return;
 
-  form.put(route("#", props.user.id), {
+  form.put(route("admin.users.update", props.user.id), {
     preserveScroll: true,
     onSuccess: () => close(),
   });
@@ -56,7 +56,7 @@ const askDelete = () => {
 const doDelete = () => {
   if (!props.user?.id) return;
 
-  deleteForm.delete(route("#", props.user.id), {
+  deleteForm.delete(route("admin.users.destroy", props.user.id), {
     preserveScroll: true,
     onSuccess: () => {
       confirmDeleteOpen.value = false;

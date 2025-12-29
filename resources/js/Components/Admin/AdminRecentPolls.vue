@@ -23,7 +23,7 @@ defineProps({
         </p>
       </div>
 
-      <Link href="#" class="text-xs text-zinc-400 hover:text-emerald-400 transition">
+      <Link :href="route('admin.polls.index')" class="text-xs text-zinc-400 hover:text-emerald-400 transition">
         View all
         <MoveRight class="inline h-4 w-4" />
       </Link>
@@ -52,7 +52,7 @@ defineProps({
             Votes: <span class="text-zinc-200">{{ poll.votes_count ?? 0 }}</span>
           </span>
           <span class="ml-auto">
-            <Link href="#" class="text-zinc-300 hover:text-emerald-400 transition">
+            <Link :href="route('admin.polls.show', poll.id)" class="text-zinc-300 hover:text-emerald-400 transition">
               Open
               <MoveRight class="inline h-4 w-4" />
             </Link>

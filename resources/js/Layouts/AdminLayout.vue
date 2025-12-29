@@ -6,21 +6,21 @@
       </div>
 
       <nav class="flex-1 px-3 py-4 space-y-1 text-sm bg-zinc-950">
-        <Link href="#" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+        <Link :href="route('admin.dashboard')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('admin.dashboard')
           ? 'bg-zinc-900 text-emerald-400'
           : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'">
           <LayoutDashboard class="w-5 h-5" />
           <span>Overview</span>
         </Link>
 
-        <Link href="#" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+        <Link :href="route('admin.polls.index')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('admin.polls.*')
           ? 'bg-zinc-900 text-emerald-400'
           : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'">
           <BarChart3 class="w-5 h-5" />
           <span>Polls</span>
         </Link>
 
-        <Link class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+        <Link :href="route('admin.users.index')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('admin.users.*')
           ? 'bg-zinc-900 text-emerald-400'
           : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'">
           <UsersRound class="w-5 h-5" />
@@ -103,21 +103,21 @@
           </div>
 
           <nav class="flex-1 px-3 py-4 space-y-1 text-sm">
-            <Link href="#" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+            <Link :href="route('admin.dashboard')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('admin.dashboard')
               ? 'bg-zinc-900 text-emerald-400'
               : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'" @click="mobileOpen = false">
               <LayoutDashboard class="w-5 h-5" />
               <span>Overview</span>
             </Link>
 
-            <Link href="#" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+            <Link :href="route('admin.polls.index')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('admin.polls.*')
               ? 'bg-zinc-900 text-emerald-400'
               : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'" @click="mobileOpen = false">
               <BarChart3 class="w-5 h-5" />
               <span>Polls</span>
             </Link>
 
-            <Link href="#" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+            <Link :href="route('admin.users.index')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('admin.users.*')
               ? 'bg-zinc-900 text-emerald-400'
               : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'" @click="mobileOpen = false">
               <UsersRound class="w-5 h-5" />

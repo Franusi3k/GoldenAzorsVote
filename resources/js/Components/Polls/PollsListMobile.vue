@@ -38,11 +38,11 @@ defineProps({
         {{ poll.categories_count ?? 0 }} categories · {{ poll.votes_count ?? 0 }} votes
       </div>
 
-      <div class="mt-0.5 text-[11px] text-zinc-500">Starts: {{ poll.starts_at ?? "—" }}</div>
-      <div class="mt-0.5 text-[11px] text-zinc-500">Ends: {{ poll.ends_at ?? "—" }}</div>
+      <div class="mt-0.5 text-[11px] text-zinc-500">Opens: {{ poll.opens_at ?? "—" }}</div>
+      <div class="mt-0.5 text-[11px] text-zinc-500">Closes: {{ poll.closes_at ?? "—" }}</div>
 
       <div class="flex items-center justify-end gap-6">
-        <Link href="#" class="text-[11px] text-zinc-400 hover:text-emerald-400">
+        <Link :href="route('admin.polls.show', poll.id)" class="text-[11px] text-zinc-400 hover:text-emerald-400">
           Open poll
         </Link>
         <Link href="#"

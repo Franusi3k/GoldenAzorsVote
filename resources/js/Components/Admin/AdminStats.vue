@@ -7,9 +7,9 @@ const props = defineProps({
 })
 
 const cards = [
-  { key: 'active_polls', label: 'Active polls', hint: 'Currently running' },
+  { key: 'activePolls', label: 'Active polls', hint: 'Currently running' },
   { key: 'votes_today', label: 'Votes today', hint: 'Last 24 hours' },
-  { key: 'new_users_7d', label: 'New users', hint: 'Last 7 days' },
+  { key: 'newUsers', label: 'New users', hint: 'Last 7 days' },
 ]
 </script>
 
