@@ -2,7 +2,7 @@
 
 namespace App\Domain\Poll;
 
-class PollStatus
+class PollType
 {
     public const OPEN = 'open';
     public const CLOSED = 'closed';
