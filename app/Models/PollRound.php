@@ -29,7 +29,7 @@ class PollRound extends Model
 
     public function options(): HasMany
     {
-        return $this->hasMany(PollOption::class);
+        return $this->hasMany(PollRoundOption::class);
     }
 
     public function scopeOrdered(Builder $query): Builder
