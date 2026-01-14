@@ -32,7 +32,7 @@
             Account
           </p>
 
-          <Link class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+          <Link :href="route('profile.edit')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('profile.edit')
             ? 'bg-zinc-900 text-emerald-400'
             : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'">
             <Settings class="w-5 h-5" />
@@ -68,19 +68,8 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-3">
-            <div class="hidden sm:flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-950 px-2 py-1.5">
-              <div
-                class="h-7 w-7 rounded-full bg-gradient-to-br from-emerald-500 to-amber-400 flex items-center justify-center text-[11px] font-semibold text-zinc-950">
-                <User class="w-4 h-4" />
-              </div>
-              <div class="flex flex-col leading-tight">
-                <span class="text-xs text-zinc-100 truncate max-w-[160px]">
-                  {{ userName }}
-                </span>
-              </div>
-            </div>
-          </div>
+          <UserMenu :user-name="userName" />
+
         </div>
       </header>
 
@@ -129,7 +118,7 @@
                 Account
               </p>
 
-              <Link href="#" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('#')
+              <Link :href="route('profile.edit')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('profile.edit')
                 ? 'bg-zinc-900 text-emerald-400'
                 : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'" @click="mobileOpen = false">
                 <Settings class="w-5 h-5" />
@@ -155,14 +144,15 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Link, usePage } from '@inertiajs/vue3'
-import { LayoutDashboard, BarChart3, UsersRound, Settings, Menu, X, User } from 'lucide-vue-next'
+import { LayoutDashboard, BarChart3, UsersRound, Settings, Menu, X } from 'lucide-vue-next'
 import AppLogo from '@/Components/Brand/AppLogo.vue'
+import UserMenu from '@/Components/Navigation/UserMenu.vue'
 
 const mobileOpen = ref(false)
 const page = usePage()
 
-const userName = computed(() => page.props.auth?.user?.name || 'Admin')
 const userEmail = computed(() => page.props.auth?.user?.email || 'admin@example.com')
+const userName = computed(() => page.props.auth?.user?.name || 'Admin')
 
 const isCurrent = (pattern) => {
   if (!pattern.includes('*')) return route().current(pattern)
