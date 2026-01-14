@@ -1,56 +1,33 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import DeleteUserForm from './Partials/DeleteUserForm.vue';
-import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
-import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
-import { Head } from '@inertiajs/vue3';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'
+import AdminLayout from '@/Layouts/AdminLayout.vue'
+import ProfileInfoForm from '@/Components/Profile/ProfileInfoForm.vue'
+import PasswordForm from '@/Components/Profile/PasswordForm.vue'
+import { Head, usePage } from '@inertiajs/vue3'
+import HeaderSection from '@/Components/Common/HeaderSection.vue'
+import DangerZone from '@/Components/Profile/DangerZone.vue'
 
-defineProps({
-    mustVerifyEmail: {
-        type: Boolean,
-    },
-    status: {
-        type: String,
-    },
-});
+const page = usePage()
+const user = page.props.auth.user
+
 </script>
 
 <template>
-    <Head title="Profile" />
+  <component :is="user.roles.some(role => role.name === 'admin') ? AdminLayout : AuthenticatedLayout">
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2
-                class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200"
-            >
-                Profile
-            </h2>
-        </template>
+    <Head title="Account Settings – GoldenAzorsVote" />
 
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-                <div
-                    class="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-gray-800"
-                >
-                    <UpdateProfileInformationForm
-                        :must-verify-email="mustVerifyEmail"
-                        :status="status"
-                        class="max-w-xl"
-                    />
-                </div>
+    <template v-slot:title>
+      Account Settings
+    </template>
 
-                <div
-                    class="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-gray-800"
-                >
-                    <UpdatePasswordForm class="max-w-xl" />
-                </div>
+    <div class="space-y-6">
+      <HeaderSection subtitle="Account" title="Your profile settings"
+        description="Manage your personal information, security settings and account preferences." />
 
-                <div
-                    class="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-gray-800"
-                >
-                    <DeleteUserForm class="max-w-xl" />
-                </div>
-            </div>
-        </div>
-    </AuthenticatedLayout>
+      <ProfileInfoForm />
+      <PasswordForm />
+      <DangerZone />
+    </div>
+  </component>
 </template>
