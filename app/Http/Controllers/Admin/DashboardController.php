@@ -6,7 +6,7 @@ use App\Domain\Poll\PollStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Poll;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -35,8 +35,8 @@ class DashboardController extends Controller
                 'type' => 'user',
             ]);
 
-        return Inertia::render('Admin/Overview', [
-            'recentPolls' => Poll::latest()->paginate(4),
+        return Inertia::render('Dashboard/Index', [
+            'recentPolls' => Poll::latest()->take(4)->get(),
             'stats' => [
                 'activePolls' => Poll::where('status', PollStatus::ACTIVE)->count(),
                 'newUsers' => User::where('created_at', '>=', now()->subWeek())->count(),

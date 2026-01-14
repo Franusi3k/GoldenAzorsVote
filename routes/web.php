@@ -2,20 +2,13 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use \App\Http\Controllers\Admin\PollController;
 use \App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\LandingController;
 
-Route::get('/', function () {
-    return Inertia::render('Landing/Index', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
