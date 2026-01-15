@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -35,7 +36,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        switch($user->role) {
+        switch($user->getRoleNames()->first()) {
             case 'admin':
                 return redirect()->intended(route('admin.dashboard', absolute: false));
             case 'user':
