@@ -23,7 +23,8 @@ class DashboardController extends Controller
                 'description' => "Poll '{$poll->name}' was created.",
                 'time' => $poll->created_at->toDateTimeString(),
                 'type' => 'poll',
-            ]);
+            ])
+            ->toBase();
 
         $recentUsers = User::latest()
             ->take(5)
@@ -33,9 +34,10 @@ class DashboardController extends Controller
                 'description' => "User {$user->name} registered.",
                 'time' => $user->created_at->toDateTimeString(),
                 'type' => 'user',
-            ]);
+            ])
+            ->toBase();
 
-        return Inertia::render('Dashboard/Index', [
+        return Inertia::render('Admin/Overview', [
             'recentPolls' => Poll::latest()->take(4)->get(),
             'stats' => [
                 'activePolls' => Poll::where('status', PollStatus::ACTIVE)->count(),
