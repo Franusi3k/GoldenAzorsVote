@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use \App\Http\Controllers\Admin\PollController;
 use \App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\User\DashboardController as UserDashboardController;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing.index');
 
@@ -30,6 +31,14 @@ Route::middleware(['auth', 'role:admin'])
         Route::resource('/polls', PollController::class)->only(['index', 'show', 'update', 'destroy']);
 
         Route::resource('/users', UserController::class)->only(['index', 'show', 'update', 'destroy']);
+    });
+
+Route::middleware(['auth', 'role:user'])
+    ->name('user.')
+    ->prefix('user')
+    ->group(function () {
+        
+        Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     });
 
 require __DIR__.'/auth.php';
