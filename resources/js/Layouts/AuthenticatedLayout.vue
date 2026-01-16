@@ -6,7 +6,7 @@
       </div>
 
       <nav class="flex-1 px-3 py-4 space-y-1 text-sm bg-zinc-950">
-        <Link :href="route('dashboard')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('dashboard')
+        <Link :href="route('user.dashboard')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('user.dashboard')
           ? 'bg-zinc-900 text-emerald-400'
           : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'">
           <span class="text-lg">
@@ -98,7 +98,7 @@
           </div>
 
           <nav class="flex-1 px-3 py-4 space-y-1 text-sm">
-            <Link :href="route('dashboard')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('dashboard')
+            <Link :href="route('user.dashboard')" class="flex items-center gap-2 rounded-xl px-3 py-2" :class="isCurrent('user.dashboard')
               ? 'bg-zinc-900 text-emerald-400'
               : 'text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400'" @click="mobileOpen = false">
               <span class="text-lg">

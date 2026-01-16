@@ -36,7 +36,7 @@
           </template>
 
           <template v-else>
-            <Link :href="route('dashboard')"
+            <Link :href="route(role === 'admin' ? 'admin.dashboard' : 'user.dashboard')"
               class="rounded-full bg-gradient-to-r from-amber-400 to-emerald-500 px-4 py-1.5 text-xs font-semibold text-zinc-950 shadow-lg shadow-amber-500/30 hover:brightness-110 active:scale-[0.98] transition">
               Go to dashboard
             </Link>
@@ -89,7 +89,7 @@
             </template>
 
             <template v-else>
-              <Link :href="route('dashboard')"
+              <Link :href="route(role === 'admin' ? 'admin.dashboard' : 'user.dashboard')"
                 class="flex-1 rounded-full max-w-fit bg-gradient-to-r from-amber-400 to-emerald-500 px-3 py-1.5 text-xs font-semibold text-zinc-950 shadow-lg shadow-amber-500/30"
                 @click="closeMobile">
                 Go to dashboard
@@ -112,6 +112,7 @@ import { useScrollToSection } from '@/Composables/useScrollToSection'
 
 const page = usePage()
 const user = computed(() => page.props.auth?.user)
+const role = user.value?.roles.some(role => role.name === 'admin') ? 'admin' : 'user'
 
 const { activeSection } = useScrollSpy([
   'hero',
