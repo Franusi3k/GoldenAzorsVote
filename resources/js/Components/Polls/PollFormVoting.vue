@@ -47,14 +47,6 @@ const setPollType = type => {
       </div>
 
       <div class="grid gap-3 md:grid-cols-2">
-        <label class="flex items-start gap-2 text-[11px] text-zinc-300">
-          <input v-model="form.require_login" type="checkbox"
-            class="mt-[3px] h-3 w-3 rounded border-zinc-600 bg-zinc-900 text-emerald-500 focus:ring-emerald-500" />
-          <span>Require users to log in before voting</span>
-        </label>
-      </div>
-
-      <div class="grid gap-3 md:grid-cols-2">
         <div>
           <label for="opens-at" class="block text-xs font-medium text-zinc-300 mb-1">
             Opens at
