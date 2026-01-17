@@ -1,10 +1,11 @@
 <script setup>
 import AdminLayout from "@/Layouts/AdminLayout.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ConfirmModal from "@/Components/ConfirmModal.vue";
 import PollFormBasics from "@/Components/Polls/PollFormBasics.vue";
 import PollFormVoting from "@/Components/Polls/PollFormVoting.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
-import { ArrowBigLeft, Component } from "lucide-vue-next";
+import { Head, Link, useForm, usePage } from "@inertiajs/vue3";
+import { ArrowBigLeft } from "lucide-vue-next";
 import { ref } from "vue";
 
 const props = defineProps({
@@ -12,21 +13,17 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
-  layout: String,
-  backRoute: {
-    type: String,
-    default: "#",
-  },
 });
 
-const Layout = props.layout === "admin" ? AdminLayout : AdminLayout;
+const page = usePage()
+const user = page.props.auth.user
+const isAdmin = user.roles.some(role => role.name === 'admin')
 
 const form = useForm({
   name: props.poll.name ?? "",
   slug: props.poll.slug ?? "",
   description: props.poll.description ?? "",
   poll_type: props.poll.poll_type ?? "open",
-  require_login: props.poll.require_login ?? true,
   opens_at: props.poll.opens_at ?? "",
   closes_at: props.poll.closes_at ?? "",
 });
@@ -36,7 +33,6 @@ const save = () => {
     preserveScroll: true,
   });
 };
-
 
 const confirmDeleteOpen = ref(false);
 
@@ -51,19 +47,24 @@ const doDestroy = () => {
     preserveScroll: true,
     onSuccess: () => {
       confirmDeleteOpen.value = false;
-    },
+    }
   });
 };
 </script>
 
 <template>
-  <Component :is="Layout">
+  <component :is="isAdmin ? AdminLayout : AuthenticatedLayout">
 
     <Head :title="`Edit – ${poll.name} | GoldenAzorsVote`" />
 
+    <template #title>
+      Edit Poll
+    </template>
+
     <section class="mb-6 flex items-start justify-between gap-3">
       <div>
-        <Link :href="backRoute" class="text-[11px] text-zinc-400 hover:text-emerald-400 flex items-center">
+        <Link :href="isAdmin ? route('admin.polls.index') : '#'"
+          class="text-[11px] text-zinc-400 hover:text-emerald-400 flex items-center">
           <ArrowBigLeft class="w-3 h-3 inline mr-1" /> Back to polls
         </Link>
 
@@ -79,7 +80,7 @@ const doDestroy = () => {
 
         <Link href="#"
           class="rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 font-medium text-zinc-100 hover:border-emerald-400 hover:text-emerald-400 transition">
-          Manage categories
+          Manage rounds
         </Link>
       </div>
     </section>
@@ -89,7 +90,9 @@ const doDestroy = () => {
       <PollFormVoting :form="form" />
 
       <div class="flex items-center justify-end gap-2 pt-2">
-        <Link :href="backRoute" class="text-xs text-zinc-400 hover:text-zinc-200">Cancel</Link>
+        <Link :href="isAdmin ? route('admin.polls.index') : '#'" class="text-xs text-zinc-400 hover:text-zinc-200">
+          Cancel
+        </Link>
 
         <button type="submit" :disabled="form.processing"
           class="rounded-full bg-gradient-to-r from-amber-400 to-emerald-500 px-4 py-2 text-xs font-semibold text-zinc-950 shadow-lg shadow-amber-500/30 hover:brightness-110 active:scale-[0.98] transition disabled:opacity-60 disabled:cursor-not-allowed">
@@ -104,7 +107,7 @@ const doDestroy = () => {
         <div>
           <h2 class="text-sm font-semibold text-zinc-50">Danger zone</h2>
           <p class="mt-1 text-[11px] text-zinc-400">
-            Deleting a poll removes all categories, nominees and votes. This cannot be
+            Deleting a poll removes all rounds, options and votes. This cannot be
             undone.
           </p>
         </div>
@@ -117,10 +120,10 @@ const doDestroy = () => {
           confirmText="Delete poll" cancelText="Cancel" :loading="destroyForm.processing" :danger="true"
           @close="confirmDeleteOpen = false" @confirm="doDestroy">
           <p class="text-[11px] text-zinc-400">
-            This will permanently delete the poll, its categories and nominees.
+            This will permanently delete the poll, its rounds and options.
           </p>
         </ConfirmModal>
       </div>
     </section>
-  </Component>
+  </component>
 </template>
