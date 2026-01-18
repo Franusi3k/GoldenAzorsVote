@@ -35,11 +35,11 @@
             2
           </div>
           <h3 class="mb-1 text-sm font-semibold text-zinc-50">
-            Add categories and nominees
+            Add rounds and options
           </h3>
           <p class="text-xs text-zinc-400">
-            Create multiple categories like “Best teammate” or “Clip of the year”
-            and attach nominees with descriptions and YouTube clips.
+            Create multiple rounds like “Best teammate” or “Clip of the year”
+            and attach options with descriptions and YouTube clips.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  nominees: { type: Array, default: () => [] },
+  options: { type: Array, default: () => [] },
 })
 
 const emit = defineEmits(['play'])
@@ -8,8 +8,8 @@ const emit = defineEmits(['play'])
 
 <template>
   <div>
-    <div v-if="nominees.length" class="grid gap-3 sm:grid-cols-2">
-      <div v-for="n in nominees" :key="n.id"
+    <div v-if="options.length" class="grid gap-3 sm:grid-cols-2">
+      <div v-for="n in options" :key="n.id"
         class="rounded-2xl border border-zinc-800 bg-zinc-950 px-3 py-3 text-xs text-zinc-200">
         <div class="flex items-start justify-between gap-2">
           <div class="min-w-0">
@@ -36,7 +36,7 @@ const emit = defineEmits(['play'])
 
     <div v-else
       class="rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/60 px-4 py-6 text-center text-[11px] text-zinc-500">
-      No nominees yet. Add the first one below.
+      No options yet. Add the first one below.
     </div>
   </div>
 </template>

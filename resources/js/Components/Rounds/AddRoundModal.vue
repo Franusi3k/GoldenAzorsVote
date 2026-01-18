@@ -30,7 +30,7 @@ watch(
 const close = () => emit("close");
 
 const save = () => {
-  form.post(route("polls.categories.store", props.pollId), {
+  form.post(route("#", props.pollId), {
     preserveScroll: true,
     onSuccess: () => {
       form.reset("title", "description");
@@ -41,13 +41,13 @@ const save = () => {
 </script>
 
 <template>
-  <BaseModal :open="open" title="Add category" description="Create a new category for your poll." @close="close">
+  <BaseModal :open="open" title="Add round" description="Create a new round for your poll." @close="close">
     <div class="grid gap-3">
       <div>
         <label class="block text-xs font-medium text-zinc-300 mb-1">Title</label>
         <input v-model="form.title" type="text"
           class="w-full rounded-xl border border-zinc-700 bg-zinc-950/80 px-3 py-2 text-sm text-zinc-50 placeholder:text-zinc-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none"
-          placeholder="Upadek roku" />
+          placeholder="Streamer of the Year" />
         <p v-if="form.errors.title" class="mt-1 text-[11px] text-red-400">{{ form.errors.title }}</p>
       </div>
 
@@ -55,7 +55,7 @@ const save = () => {
         <label class="block text-xs font-medium text-zinc-300 mb-1">Description (optional)</label>
         <textarea v-model="form.description" rows="3"
           class="w-full rounded-xl border border-zinc-700 bg-zinc-950/80 px-3 py-2 text-sm text-zinc-50 placeholder:text-zinc-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none"
-          placeholder="Krótki opis tej kategorii..." />
+          placeholder="Short description of this round..." />
         <p v-if="form.errors.description" class="mt-1 text-[11px] text-red-400">{{ form.errors.description }}</p>
       </div>
     </div>

@@ -27,7 +27,7 @@ defineProps({
       </p>
 
       <div class="mt-4 flex gap-4 text-xs text-zinc-500">
-        <span>{{ poll.categories_count ?? 0 }} categories</span>
+        <span>{{ poll.rounds_count ?? 0 }} rounds</span>
         <span>{{ poll.votes_count ?? 0 }} votes</span>
       </div>
     </div>

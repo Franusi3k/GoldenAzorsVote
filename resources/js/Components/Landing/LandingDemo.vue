@@ -10,7 +10,7 @@
             See your event like a real awards show.
           </h2>
           <p class="text-sm text-zinc-400">
-            Use the presentation mode to display categories, nominees and
+            Use the presentation mode to display rounds, options and
             winners with animated results. Perfect for Twitch overlays, big
             screens and projectors.
           </p>
@@ -31,7 +31,7 @@
               <span class="mt-[3px] text-emerald-400">
                 <Check class="w-3 h-3" />
               </span>
-              <span>Winner reveal and detailed results per category.</span>
+              <span>Winner reveal and detailed results per round.</span>
             </li>
           </ul>
           <div class="pt-2">
@@ -47,7 +47,7 @@
         <div class="rounded-3xl border border-zinc-800 bg-zinc-950/70 p-6 mx-6 shadow-xl shadow-black/60">
           <div class="flex flex-col items-center text-center">
             <div class="text-[10px] uppercase tracking-[0.3em] text-zinc-500">
-              Category
+              Round
             </div>
             <div class="mt-2 text-xl font-extrabold tracking-tight text-zinc-50">
               Clip of the year
@@ -62,7 +62,7 @@
                 </div>
                 <div class="text-left">
                   <p class="text-xs font-medium text-zinc-300">
-                    Nominee highlight
+                    Options highlight
                   </p>
                   <p class="text-[10px] text-zinc-500">
                     Video preview appears during live presentation

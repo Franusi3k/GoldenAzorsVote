@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  category: { type: Object, required: true },
+  round: { type: Object, required: true },
   form: { type: Object, required: true },
   saving: { type: Boolean, default: false },
 })
@@ -12,9 +12,9 @@ const emit = defineEmits(['save', 'delete'])
   <div class="rounded-3xl border border-zinc-800 bg-zinc-950/80 p-4 md:p-5 space-y-4">
     <div class="flex items-start justify-between gap-3">
       <div>
-        <h2 class="text-sm font-semibold text-zinc-50">Edit category</h2>
+        <h2 class="text-sm font-semibold text-zinc-50">Edit round</h2>
         <p class="text-[11px] text-zinc-400">
-          Update name, description and voting rules for this category.
+          Update name, description and voting rules for this round.
         </p>
       </div>
 
@@ -69,7 +69,7 @@ const emit = defineEmits(['save', 'delete'])
         <button type="button" :disabled="saving"
           class="rounded-full bg-gradient-to-r from-amber-400 to-emerald-500 px-4 py-2 text-xs font-semibold text-zinc-950 shadow-lg shadow-amber-500/30 hover:brightness-110 active:scale-[0.98] transition disabled:opacity-60 disabled:cursor-not-allowed"
           @click="$emit('save')">
-          <span v-if="!saving">Save category</span>
+          <span v-if="!saving">Save round</span>
           <span v-else>Saving…</span>
         </button>
       </div>

@@ -8,7 +8,7 @@ import { ref } from "vue";
 const props = defineProps({
   open: { type: Boolean, default: false },
   pollId: { type: [Number, String], required: true },
-  category: { type: Object, default: null },
+  round: { type: Object, default: null },
 });
 
 const emit = defineEmits(["close"]);
@@ -26,18 +26,18 @@ watch(
   (isOpen) => {
     if (!isOpen) return;
 
-    form.title = props.category?.title ?? "";
-    form.description = props.category?.description ?? "";
+    form.title = props.round?.title ?? "";
+    form.description = props.round?.description ?? "";
     form.clearErrors();
   }
 );
 
-const canSave = computed(() => !!props.category?.id);
+const canSave = computed(() => !!props.round?.id);
 
 const save = () => {
-  if (!props.category?.id) return;
+  if (!props.round?.id) return;
 
-  form.put(route("#", [props.pollId, props.category.id]), {
+  form.put(route("#", [props.pollId, props.round.id]), {
     preserveScroll: true,
     onSuccess: () => close(),
   });
@@ -53,7 +53,7 @@ const destroy = () => {
 const deleteForm = useForm({});
 
 const doDelete = () => {
-  deleteForm.delete(route("#", [props.pollId, props.category.id]), {
+  deleteForm.delete(route("#", [props.pollId, props.round.id]), {
     preserveScroll: true,
     onSuccess: () => {
       confirmDeleteOpen.value = false;
@@ -64,9 +64,9 @@ const doDelete = () => {
 </script>
 
 <template>
-  <BaseModal :open="open" title="Edit category" description="Update the title and description." @close="close">
-    <div v-if="!category" class="text-xs text-zinc-400">
-      No category selected.
+  <BaseModal :open="open" title="Edit round" description="Update the title and description." @close="close">
+    <div v-if="!round" class="text-xs text-zinc-400">
+      No round selected.
     </div>
 
     <div v-else class="grid gap-3">
@@ -89,15 +89,15 @@ const doDelete = () => {
       <div class="flex items-center justify-between gap-3">
         <button type="button"
           class="text-xs font-semibold text-red-400 hover:text-red-300 transition disabled:opacity-60" @click="destroy"
-          :disabled="deleteForm.processing || !category">
-          Delete category
+          :disabled="deleteForm.processing || !round">
+          Delete round
         </button>
 
-        <ConfirmModal :open="confirmDeleteOpen" title="Delete category?" description="This action cannot be undone."
-          confirmText="Delete category" :loading="deleteForm.processing" @close="confirmDeleteOpen = false"
+        <ConfirmModal :open="confirmDeleteOpen" title="Delete round?" description="This action cannot be undone."
+          confirmText="Delete round" :loading="deleteForm.processing" @close="confirmDeleteOpen = false"
           @confirm="doDelete">
           <p class="text-[11px] text-zinc-400">
-            This will remove the category and all its nominees.
+            This will remove the round and all its options.
           </p>
         </ConfirmModal>
 

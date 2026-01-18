@@ -9,8 +9,8 @@ const props = defineProps({
   open: { type: Boolean, default: false },
   mode: { type: String, default: "create" },
   pollId: { type: [Number, String], required: true },
-  categoryId: { type: [Number, String], required: true },
-  nominee: { type: Object, default: null },
+  roundId: { type: [Number, String], required: true },
+  option: { type: Object, default: null },
 });
 
 const emit = defineEmits(["close"]);
@@ -28,15 +28,15 @@ watch(
     if (!isOpen) return;
 
     form.clearErrors();
-    form.label = props.nominee?.label ?? "";
-    form.description = props.nominee?.description ?? "";
-    form.youtube_url = props.nominee?.youtube_url ?? "";
+    form.label = props.option?.label ?? "";
+    form.description = props.option?.description ?? "";
+    form.youtube_url = props.option?.youtube_url ?? "";
   }
 );
 
-const title = computed(() => (props.mode === "edit" ? "Edit nominee" : "Add nominee"));
+const title = computed(() => (props.mode === "edit" ? "Edit option" : "Add option"));
 const description = computed(() =>
-  props.mode === "edit" ? "Update nominee details and clip URL." : "Create a new nominee for this category."
+  props.mode === "edit" ? "Update option details and clip URL." : "Create a new option for this round."
 );
 
 const ytId = computed(() => {
@@ -58,17 +58,17 @@ const embedUrl = computed(() => (ytId.value ? `https://www.youtube.com/embed/${y
 
 const save = () => {
   if (props.mode === "create") {
-    form.post(route("#", [props.pollId, props.categoryId]), {
+    form.post(route("#", [props.pollId, props.roundId]), {
       preserveScroll: true,
       onSuccess: () => close(),
     });
     return;
   }
 
-  if (!props.nominee?.id) return;
+  if (!props.option?.id) return;
 
   form.put(
-    route("#", [props.pollId, props.categoryId, props.nominee.id]),
+    route("#", [props.pollId, props.roundId, props.option.id]),
     {
       preserveScroll: true,
       onSuccess: () => close(),
@@ -76,21 +76,21 @@ const save = () => {
   );
 };
 
-const confirmNomineeDeleteOpen = ref(false);
+const confirmOptionDeleteOpen = ref(false);
 
 const deleteForm = useForm({});
 
-const DeleteNominee = () => {
-  confirmNomineeDeleteOpen.value = true;
+const DeleteOption = () => {
+  confirmOptionDeleteOpen.value = true;
 };
 
-const doDeleteNominee = () => {
-  if (!props.categoryId || !props.nominee?.id) return;
+const doDeleteOption = () => {
+  if (!props.roundId || !props.option?.id) return;
 
-  deleteForm.delete(route("#", [props.pollId, props.categoryId, props.nominee.id]), {
+  deleteForm.delete(route("#", [props.pollId, props.roundId, props.option.id]), {
     preserveScroll: true,
     onSuccess: () => {
-      confirmNomineeDeleteOpen.value = false;
+      confirmOptionDeleteOpen.value = false;
       close();
     }
   });
@@ -121,7 +121,7 @@ const doDeleteNominee = () => {
         <label class="block text-xs font-medium text-zinc-300 mb-1">Description (optional)</label>
         <textarea v-model="form.description" rows="3"
           class="w-full rounded-xl border border-zinc-700 bg-zinc-950/80 px-3 py-2 text-sm text-zinc-50 placeholder:text-zinc-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none"
-          placeholder="Krótki opis klipu / momentu..." />
+          placeholder="Short description of the clip / moment…" />
       </div>
 
       <div class="rounded-2xl border border-zinc-800 bg-zinc-950/60 p-3">
@@ -143,15 +143,15 @@ const doDeleteNominee = () => {
       <div class="flex items-center justify-between gap-3">
         <button v-if="mode === 'edit'" type="button"
           class="text-xs font-semibold text-red-400 hover:text-red-300 transition disabled:opacity-60"
-          @click="DeleteNominee" :disabled="deleteForm.processing || !nominee">
-          Delete nominee
+          @click="DeleteOption" :disabled="deleteForm.processing || !option">
+          Delete option
         </button>
         <div v-else />
-        <ConfirmModal :open="confirmNomineeDeleteOpen" title="Delete nominee?"
-          description="This action cannot be undone." confirmText="Delete nominee" :loading="deleteForm.processing"
-          @close="confirmNomineeDeleteOpen = false" @confirm="doDeleteNominee">
+        <ConfirmModal :open="confirmOptionDeleteOpen" title="Delete option?"
+          description="This action cannot be undone." confirmText="Delete option" :loading="deleteForm.processing"
+          @close="confirmOptionDeleteOpen = false" @confirm="doDeleteOption">
           <p class="text-[11px] text-zinc-400">
-            You’re deleting: <span class="text-zinc-200">{{ nominee?.label }}</span>
+            You’re deleting: <span class="text-zinc-200">{{ option?.label }}</span>
           </p>
         </ConfirmModal>
 

@@ -23,7 +23,7 @@ const submit = () => {
     <Head>
       <title>Register – GoldenAzorsVote</title>
       <meta name="description"
-        content="Create a GoldenAzorsVote account to host multi-category polls, award shows and secure voting events." />
+        content="Create a GoldenAzorsVote account to host multi-round polls, award shows and secure voting events." />
     </Head>
 
     <div

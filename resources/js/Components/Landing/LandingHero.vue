@@ -23,13 +23,13 @@
         <h1 class="text-balance text-3xl font-semibold tracking-tight text-zinc-50 md:text-5xl">
           Host
           <span class="bg-gradient-to-r from-amber-400 via-emerald-400 to-emerald-500 bg-clip-text text-transparent">
-            multi-category polls
+            multi-round polls
           </span>
           for your community.
         </h1>
 
         <p class="mt-4 max-w-xl text-sm text-zinc-300 md:text-base">
-          GoldenAzorsVote lets you create Twitch-style award shows, multi-category
+          GoldenAzorsVote lets you create Twitch-style award shows, multi-round
           polls and live voting events with secure logins, detailed stats and a
           presentation mode ready for projectors and streams.
         </p>
@@ -61,11 +61,11 @@
         <div class="mt-6 flex flex-wrap items-center gap-4 text-[11px] text-zinc-500">
           <div class="flex items-center gap-1">
             <span class="text-emerald-400">✓</span>
-            <span>Multi-category polls</span>
+            <span>Multi-round polls</span>
           </div>
           <div class="flex items-center gap-1">
             <span class="text-emerald-400">✓</span>
-            <span>YouTube clips per nominee</span>
+            <span>YouTube clips per option</span>
           </div>
           <div class="flex items-center gap-1">
             <span class="text-emerald-400">✓</span>

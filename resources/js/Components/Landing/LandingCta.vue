@@ -11,7 +11,7 @@
         </h2>
         <p class="mx-auto mt-3 max-w-xl text-sm text-zinc-400">
           Spin up your first event, invite your community and run a full
-          multi-category show without wrestling spreadsheets or ad-hoc votes.
+          multi-round show without wrestling spreadsheets or ad-hoc votes.
         </p>
 
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm">

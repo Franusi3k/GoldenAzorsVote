@@ -29,7 +29,7 @@
               <span class="mt-[3px] text-emerald-400">
                 <Check class="w-3 h-3" />
               </span>
-              <span>Create multi-category polls with independent categories and nominees.</span>
+              <span>Create multi-round polls with independent rounds and options.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="mt-[3px] text-emerald-400">
@@ -76,13 +76,13 @@
               <span class="mt-[3px] text-emerald-400">
                 <Check class="w-3 h-3" />
               </span>
-              <span>See nominees with descriptions and embedded YouTube clips.</span>
+              <span>See options with descriptions and embedded YouTube clips.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="mt-[3px] text-emerald-400">
                 <Check class="w-3 h-3" />
               </span>
-              <span>Clearly see how many choices you can make in each category.</span>
+              <span>Clearly see how many choices you can make in each round.</span>
             </li>
             <li class="flex items-start gap-2">
               <span class="mt-[3px] text-emerald-400">

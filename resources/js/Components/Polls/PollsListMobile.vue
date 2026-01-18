@@ -35,7 +35,7 @@ defineProps({
       </div>
 
       <div class="mt-2 text-[11px] text-zinc-400">
-        {{ poll.categories_count ?? 0 }} categories · {{ poll.votes_count ?? 0 }} votes
+        {{ poll.rounds_count ?? 0 }} rounds · {{ poll.votes_count ?? 0 }} votes
       </div>
 
       <div class="mt-0.5 text-[11px] text-zinc-500">Opens: {{ poll.opens_at ?? "—" }}</div>

@@ -51,7 +51,7 @@ defineProps({
             <div class="flex flex-col gap-1">
               <PollStatusBadge :status="poll.status" class="w-fit" />
               <p class="text-[11px] text-zinc-400">
-                {{ poll.categories_count ?? 0 }} categories · {{ poll.votes_count ?? 0 }} votes
+                {{ poll.rounds_count ?? 0 }} rounds · {{ poll.votes_count ?? 0 }} votes
               </p>
             </div>
           </td>
