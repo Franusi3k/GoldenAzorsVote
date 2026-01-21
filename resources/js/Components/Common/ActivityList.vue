@@ -1,4 +1,6 @@
 <script setup>
+import { useDateTime } from '@/Composables/useDateTime';
+
 defineProps({
   items: { type: Array, default: () => [] },
   description: String,
@@ -36,7 +38,7 @@ const icon = (type) => {
               {{ item.description }}
             </p>
             <p class="mt-1 text-[11px] text-zinc-500">
-              {{ item.time }}
+              {{ useDateTime(item.time).relative }}
             </p>
           </div>
         </div>

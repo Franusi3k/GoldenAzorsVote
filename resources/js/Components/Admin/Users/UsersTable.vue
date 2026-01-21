@@ -1,4 +1,6 @@
 <script setup>
+import { useDateTime } from '@/Composables/useDateTime';
+
 defineProps({
   users: {
     type: Array,
@@ -42,7 +44,7 @@ const onEdit = (user) => emit("edit", user);
 
           <td class="px-4 py-3 align-top">
             <p class="text-[11px] text-zinc-500">
-              {{ user.created_at ?? "—" }}
+              {{ useDateTime(user.created_at).dateTime }}
             </p>
           </td>
 

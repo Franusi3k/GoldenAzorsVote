@@ -1,6 +1,7 @@
 <script setup>
 import PollStatusBadge from './PollStatusBadge.vue'
 import { Link } from '@inertiajs/vue3'
+import { useDateTime } from '@/Composables/useDateTime'
 
 defineProps({
   poll: {
@@ -34,8 +35,8 @@ defineProps({
 
     <div class="mt-5 flex items-center justify-between">
       <div class="text-[11px] text-zinc-500">
-        <div>Opens: {{ poll.opens_at ?? '—' }}</div>
-        <div>Closes: {{ poll.closes_at ?? '—' }}</div>
+        <div>Opens: {{ useDateTime(poll.opens_at).dateTime ?? '—' }}</div>
+        <div>Closes: {{ useDateTime(poll.closes_at).dateTime ?? '—' }}</div>
       </div>
 
       <Link href="#"

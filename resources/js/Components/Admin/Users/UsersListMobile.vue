@@ -1,4 +1,6 @@
 <script setup>
+import { useDateTime } from '@/Composables/useDateTime';
+
 defineProps({
   users: {
     type: Array,
@@ -31,7 +33,7 @@ const onEdit = (user) => emit("edit", user);
           </div>
 
           <div class="mt-2 text-[11px] text-zinc-500">
-            Created: <span class="text-zinc-300">{{ user.created_at ?? "—" }}</span>
+            Created: <span class="text-zinc-300">{{ useDateTime(user.created_at).dateTime }}</span>
           </div>
         </div>
 

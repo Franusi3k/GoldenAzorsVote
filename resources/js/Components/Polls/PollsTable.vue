@@ -1,6 +1,7 @@
 <script setup>
 import PollStatusBadge from "@/Components/Polls/PollStatusBadge.vue";
 import { Link } from "@inertiajs/vue3";
+import { useDateTime } from "@/Composables/useDateTime";
 
 defineProps({
   polls: {
@@ -34,7 +35,7 @@ defineProps({
                 {{ poll.name ?? "—" }}
               </p>
               <p class="text-[11px] text-zinc-500 truncate">
-                {{ poll.slug || "No slug set" }} · Created: {{ poll.created_at ?? "—" }}
+                {{ poll.slug || "No slug set" }} · Created: {{ useDateTime(poll.created_at).dateTime }}
               </p>
             </div>
           </td>
@@ -58,10 +59,10 @@ defineProps({
 
           <td class="px-5 py-4">
             <p class="mt-1 text-[11px] text-zinc-500">
-              Opens: <span class="text-zinc-300">{{ poll.opens_at ?? "—" }}</span>
+              Opens: <span class="text-zinc-300">{{ useDateTime(poll.opens_at).dateTime }}</span>
             </p>
             <p class="mt-1 text-[11px] text-zinc-500">
-              Closes: <span class="text-zinc-300">{{ poll.closes_at ?? "—" }}</span>
+              Closes: <span class="text-zinc-300">{{ useDateTime(poll.closes_at).dateTime }}</span>
             </p>
           </td>
 

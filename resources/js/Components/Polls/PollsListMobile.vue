@@ -1,6 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import PollStatusBadge from "@/Components/Polls/PollStatusBadge.vue";
+import { useDateTime } from "@/Composables/useDateTime";
 
 defineProps({
   polls: {
@@ -24,7 +25,7 @@ defineProps({
             {{ poll.name ?? "—" }}
           </p>
           <p class="mt-0.5 text-[11px] text-zinc-500 truncate">
-            {{ poll.slug || "No slug set" }} · Created: {{ poll.created_at ?? "—" }}
+            {{ poll.slug || "No slug set" }} · Created: {{ useDateTime(poll.created_at).dateTime }}
           </p>
         </div>
         <PollStatusBadge :status="poll.status" />
@@ -38,8 +39,8 @@ defineProps({
         {{ poll.rounds_count ?? 0 }} rounds · {{ poll.votes_count ?? 0 }} votes
       </div>
 
-      <div class="mt-0.5 text-[11px] text-zinc-500">Opens: {{ poll.opens_at ?? "—" }}</div>
-      <div class="mt-0.5 text-[11px] text-zinc-500">Closes: {{ poll.closes_at ?? "—" }}</div>
+      <div class="mt-0.5 text-[11px] text-zinc-500">Opens: {{ useDateTime(poll.opens_at).dateTime }}</div>
+      <div class="mt-0.5 text-[11px] text-zinc-500">Closes: {{ useDateTime(poll.closes_at).dateTime }}</div>
 
       <div class="flex items-center justify-end gap-6">
         <Link :href="route('admin.polls.show', poll.id)" class="text-[11px] text-zinc-400 hover:text-emerald-400">
