@@ -11,7 +11,7 @@ export function useDateTime(value) {
 
   const date = computed(() =>
     dateObject.value
-      ? new Intl.DateTimeFormat('pl-PL', {
+      ? new Intl.DateTimeFormat('en-US', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',
@@ -21,7 +21,7 @@ export function useDateTime(value) {
 
   const dateLong = computed(() =>
     dateObject.value
-      ? new Intl.DateTimeFormat('pl-PL', {
+      ? new Intl.DateTimeFormat('en-US', {
         day: 'numeric',
         month: 'long',
         year: 'numeric',
@@ -31,7 +31,7 @@ export function useDateTime(value) {
 
   const time = computed(() =>
     dateObject.value
-      ? new Intl.DateTimeFormat('pl-PL', {
+      ? new Intl.DateTimeFormat('en-US', {
         hour: '2-digit',
         minute: '2-digit',
       }).format(dateObject.value)
@@ -40,7 +40,7 @@ export function useDateTime(value) {
 
   const dateTime = computed(() =>
     dateObject.value
-      ? new Intl.DateTimeFormat('pl-PL', {
+      ? new Intl.DateTimeFormat('en-US', {
         dateStyle: 'short',
         timeStyle: 'short',
       }).format(dateObject.value)
@@ -49,7 +49,7 @@ export function useDateTime(value) {
 
   const dateTimeLong = computed(() =>
     dateObject.value
-      ? new Intl.DateTimeFormat('pl-PL', {
+      ? new Intl.DateTimeFormat('en-US', {
         day: 'numeric',
         month: 'long',
         year: 'numeric',
@@ -63,7 +63,7 @@ export function useDateTime(value) {
     if (!dateObject.value) return ''
 
     const diff = dateObject.value - new Date()
-    const rtf = new Intl.RelativeTimeFormat('pl', { numeric: 'auto' })
+    const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' })
 
     const minutes = Math.round(diff / 60000)
     const hours = Math.round(diff / 3600000)
