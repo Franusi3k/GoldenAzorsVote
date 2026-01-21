@@ -119,7 +119,7 @@ const openEditOptions = (cat) => {
 
               <button type="button" class="text-[11px] text-zinc-400 hover:text-emerald-400 transition"
                 @click="openEditOptions(cat)">
-                Edit option
+                Edit options
               </button>
             </div>
           </div>
