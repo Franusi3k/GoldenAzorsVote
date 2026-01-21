@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import { Link, usePage } from "@inertiajs/vue3";
-import { User, Settings, LogOut, ChevronDown } from "lucide-vue-next";
+import { User, Settings, LogOut, ChevronDown, Home } from "lucide-vue-next";
 
 const props = defineProps({
   userName: {
@@ -84,6 +84,13 @@ onBeforeUnmount(() => {
               {{ role }}
             </span>
           </div>
+
+          <Link :href="route(role === 'admin' ? 'admin.dashboard' : 'user.dashboard')"
+            class="flex items-center gap-2 rounded-xl px-3 py-2 text-xs text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400 transition"
+            @click="close">
+            <Home class="w-4 h-4" />
+            Dashboard
+          </Link>
 
           <Link :href="route('profile.edit')"
             class="flex items-center gap-2 rounded-xl px-3 py-2 text-xs text-zinc-300 hover:bg-zinc-900 hover:text-emerald-400 transition"
