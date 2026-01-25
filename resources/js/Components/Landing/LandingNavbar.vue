@@ -36,10 +36,7 @@
           </template>
 
           <template v-else>
-            <Link :href="route(role === 'admin' ? 'admin.dashboard' : 'user.dashboard')"
-              class="rounded-full bg-gradient-to-r from-amber-400 to-emerald-500 px-4 py-1.5 text-xs font-semibold text-zinc-950 shadow-lg shadow-amber-500/30 hover:brightness-110 active:scale-[0.98] transition">
-              Go to dashboard
-            </Link>
+            <UserMenu :userName="userName" />
           </template>
         </div>
 
@@ -109,10 +106,11 @@ import { Link, usePage } from '@inertiajs/vue3'
 import AppLogo from '@/Components/Brand/AppLogo.vue';
 import { useScrollSpy } from '@/Composables/useScrollSpy.js'
 import { useScrollToSection } from '@/Composables/useScrollToSection'
+import UserMenu from '../Navigation/UserMenu.vue';
 
 const page = usePage()
 const user = computed(() => page.props.auth?.user)
-const role = user.value?.roles.some(role => role.name === 'admin') ? 'admin' : 'user'
+const userName = computed(() => user.value?.name || 'User')
 
 const { activeSection } = useScrollSpy([
   'hero',
