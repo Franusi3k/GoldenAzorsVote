@@ -11,7 +11,7 @@ import { ref } from "vue";
 const props = defineProps({
   poll: {
     type: Object,
-    default: () => ({}),
+    required: true,
   },
 });
 
