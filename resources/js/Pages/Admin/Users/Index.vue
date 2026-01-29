@@ -6,6 +6,7 @@ import EditUserModal from "@/Components/Admin/Users/EditUserModal.vue";
 import { Head } from "@inertiajs/vue3";
 import { Search } from "lucide-vue-next";
 import { ref } from "vue";
+import Pagination from "@/Components/Common/Pagination.vue";
 
 const props = defineProps({
   users: {
@@ -69,5 +70,6 @@ const closeEdit = () => {
       :user="selectedUser"
       @close="closeEdit"
     />
+    <Pagination :links="users.links" class="mt-6" />
   </AdminLayout>
 </template>

@@ -3,6 +3,7 @@ import PollsTable from "@/Components/Polls/PollsTable.vue";
 import PollsListMobile from "@/Components/Polls/PollsListMobile.vue";
 import { Search } from "lucide-vue-next";
 import { ref, computed } from "vue";
+import Pagination from "@/Components/Common/Pagination.vue";
 
 const props = defineProps({
   polls: {
@@ -70,4 +71,5 @@ const filters = [
       Reset filters
     </button>
   </div>
+  <Pagination :links="polls.links" class="mt-6" />
 </template>
